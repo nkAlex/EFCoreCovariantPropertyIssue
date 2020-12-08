@@ -7,7 +7,6 @@ namespace Persistence.Infrastructure
     {
         public RelationalTypeMapping? FindMapping(in RelationalTypeMappingInfo mappingInfo)
         {
-
             return mappingInfo.ClrType.IsSubclassOf(typeof(Identifier)) ? new IdentifierRelationalTypeMapping(mappingInfo.ClrType) : null;
         }
     }

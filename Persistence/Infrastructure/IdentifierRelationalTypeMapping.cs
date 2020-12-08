@@ -25,10 +25,11 @@ namespace Persistence.Infrastructure
         {
             if (!_converters.TryGetValue(type, out var converter))
             {
-                converter = typeof(IdentifierToGuidValueConverter<>)
+                converter =
+                    typeof(IdentifierToGuidValueConverter<>)
                             .MakeGenericType(type)
                             .GetProperty(nameof(IdentifierToGuidValueConverter<Identifier>.Default), BindingFlags.Public | BindingFlags.Static)!
-                    .GetValue(null) as ValueConverter;
+                        .GetValue(null) as ValueConverter;
                 _converters.TryAdd(type, converter!);
             }
             return converter;
